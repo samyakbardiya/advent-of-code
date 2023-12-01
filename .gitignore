@@ -1,3 +1,7 @@
+# outputs
+in*.txt
+out*.txt
+
 #--------------------------------------------------#
 # The following was generated with gitignore.nvim: #
 #--------------------------------------------------#
