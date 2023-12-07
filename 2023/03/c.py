@@ -55,7 +55,7 @@ def search_nearby(i: int, j: int):
     if symbol == "*" and len(numbers) == 2:
         ANS_02 += reduce(lambda x, y: x * y, numbers)
 
-    print(f"[{i},{j}] {symbol}: {numbers}")
+    # print(f"[{i},{j}] {symbol}: {numbers}")
 
 
 def advent_of_code(F: str):
