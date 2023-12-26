@@ -41,8 +41,10 @@ def advent_of_code(file: str):
         # print(l + 1, end=": ")
         for i in range(l + 2, l + cards_earned[l + 1] + 2):
             # print(i, end=" ")
+            # count = 0
             for _ in range(card_instance[l + 1]):
-                # print("*", end="")
+                # print(count, end="")
+                # count = count + 1 if count < 9 else 0
                 card_instance[i] += 1
             # print(" | ", end="")
         # print()
