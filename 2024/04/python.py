@@ -1,14 +1,5 @@
 import sys
 
-XMAS = "XMAS"
-
-
-# def print_matrix(input):
-#     for i in input:
-#         for j in i:
-#             print(j, end=" ")
-#         print()
-
 
 def part_one(input: list[list[str]]):
     ans = 0
@@ -18,99 +9,101 @@ def part_one(input: list[list[str]]):
 
     xy_cord: list[tuple[int, int]] = []
 
+    target = "XMAS"
+
     def find_north(x, start_y):
-        end_y = start_y - len(XMAS)
+        end_y = start_y - len(target)
         if end_y < -1:
             return False
         _range = range(start_y, end_y, -1)
         xmas = "".join(input[y][x] for y in _range)
         cord = [(y, x) for y in _range]
-        if xmas == XMAS:
+        if xmas == target:
             xy_cord.extend(cord)
             return True
 
     def find_east(start_x, y):
-        end_x = start_x + len(XMAS)
+        end_x = start_x + len(target)
         if end_x > len_x:
             return False
         _range = range(start_x, end_x)
         xmas = "".join(input[y][x] for x in _range)
         cord = [(y, x) for y in _range]
-        if xmas == XMAS:
+        if xmas == target:
             xy_cord.extend(cord)
             return True
 
     def find_west(start_x, y):
-        end_x = start_x - len(XMAS)
+        end_x = start_x - len(target)
         if end_x < -1:
             return False
         _range = range(start_x, end_x, -1)
         xmas = "".join(input[y][x] for x in _range)
         cord = [(y, x) for y in _range]
-        if xmas == XMAS:
+        if xmas == target:
             xy_cord.extend(cord)
             return True
 
     def find_south(x, start_y):
-        end_y = start_y + len(XMAS)
+        end_y = start_y + len(target)
         if end_y > len_y:
             return False
         _range = range(start_y, end_y)
         xmas = "".join(input[y][x] for y in _range)
         cord = [(y, x) for y in _range]
-        if xmas == XMAS:
+        if xmas == target:
             xy_cord.extend(cord)
             return True
 
     def find_north_east(start_x, start_y):
-        end_x = start_x + len(XMAS)
-        end_y = start_y - len(XMAS)
+        end_x = start_x + len(target)
+        end_y = start_y - len(target)
         if end_x > len_x or end_y < -1:
             return False
         _range_y = range(start_y, end_y, -1)
         _range_x = range(start_x, end_x)
         xmas = "".join(input[y][x] for y, x in zip(_range_y, _range_x))
         cord = [(y, x) for y, x in zip(_range_y, _range_x)]
-        if xmas == XMAS:
+        if xmas == target:
             xy_cord.extend(cord)
             return True
 
     def find_south_east(start_x, start_y):
-        end_x = start_x + len(XMAS)
-        end_y = start_y + len(XMAS)
+        end_x = start_x + len(target)
+        end_y = start_y + len(target)
         if end_x > len_x or end_y > len_y:
             return False
         _range_y = range(start_y, end_y)
         _range_x = range(start_x, end_x)
         xmas = "".join(input[y][x] for y, x in zip(_range_y, _range_x))
         cord = [(y, x) for y, x in zip(_range_y, _range_x)]
-        if xmas == XMAS:
+        if xmas == target:
             xy_cord.extend(cord)
             return True
 
     def find_south_west(start_x, start_y):
-        end_x = start_x - len(XMAS)
-        end_y = start_y + len(XMAS)
+        end_x = start_x - len(target)
+        end_y = start_y + len(target)
         if end_x < -1 or end_y > len_y:
             return False
         _range_y = range(start_y, end_y)
         _range_x = range(start_x, end_x, -1)
         xmas = "".join(input[y][x] for y, x in zip(_range_y, _range_x))
         cord = [(y, x) for y, x in zip(_range_y, _range_x)]
-        if xmas == XMAS:
+        if xmas == target:
             xy_cord.extend(cord)
             return True
 
     def find_north_west(start_x, start_y):
-        end_x = start_x - len(XMAS)
-        end_y = start_y - len(XMAS)
+        end_x = start_x - len(target)
+        end_y = start_y - len(target)
         if end_x < -1 or end_y < -1:
             return False
         _range_y = range(start_y, end_y, -1)
         _range_x = range(start_x, end_x, -1)
         xmas = "".join(input[y][x] for y, x in zip(_range_y, _range_x))
         cord = [(y, x) for y, x in zip(_range_y, _range_x)]
-        if xmas == XMAS:
+        if xmas == target:
             xy_cord.extend(cord)
             return True
 
@@ -161,6 +154,40 @@ def part_one(input: list[list[str]]):
     # print("\n".join("".join(str(cell) for cell in row) for row in freq_matrix))
 
     return ans
+
+
+def part_two(input: list[list[str]]):
+    ans = 0
+
+    len_x = len(input[0])
+    len_y = len(input)
+
+    xy_cord: list[tuple[int, int]] = []
+
+    def find_north_east(x, y):
+        pass
+
+    def find_south_west(x, y):
+        pass
+
+    def find_south_east(x, y):
+        pass
+
+    def find_north_west(x, y):
+        pass
+
+    def find_them_all(x, y):
+        ans = 0
+        backslash = find_north_east(x - 1, y - 1) or find_south_west(x + 1, y + 1)
+        foreslash = find_north_west(x + 1, y + 1) or find_south_east(x - 1, y - 1)
+        if (backslash) and (foreslash):
+            ans += 1
+        return ans
+
+    for y in range(len_y):
+        for x in range(len_x):
+            if input[y][x] == "A":
+                ans += find_them_all(x, y)
 
 
 def main():
